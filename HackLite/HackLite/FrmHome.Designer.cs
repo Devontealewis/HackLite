@@ -43,9 +43,9 @@ namespace HackLite
             "Arp Cache Posining ",
             "DOS"});
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(25, 49);
+            this.comboBox1.Location = new System.Drawing.Point(23, 61);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(229, 21);
+            this.comboBox1.Size = new System.Drawing.Size(484, 21);
             this.comboBox1.TabIndex = 0;
             this.comboBox1.Text = "Select a NIC";
             // 
@@ -55,7 +55,7 @@ namespace HackLite
             this.pictureBox1.Image = global::HackLite.Properties.Resources.trolltrix;
             this.pictureBox1.Location = new System.Drawing.Point(2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(280, 255);
+            this.pictureBox1.Size = new System.Drawing.Size(530, 334);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -65,7 +65,7 @@ namespace HackLite
             this.btnStart.BackColor = System.Drawing.Color.Maroon;
             this.btnStart.Font = new System.Drawing.Font("Times New Roman", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStart.ForeColor = System.Drawing.Color.Lavender;
-            this.btnStart.Location = new System.Drawing.Point(47, 121);
+            this.btnStart.Location = new System.Drawing.Point(138, 249);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 23);
             this.btnStart.TabIndex = 2;
@@ -78,7 +78,7 @@ namespace HackLite
             this.btnStop.BackColor = System.Drawing.Color.Blue;
             this.btnStop.Font = new System.Drawing.Font("Times New Roman", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStop.ForeColor = System.Drawing.Color.Lavender;
-            this.btnStop.Location = new System.Drawing.Point(155, 121);
+            this.btnStop.Location = new System.Drawing.Point(328, 249);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 23);
             this.btnStop.TabIndex = 3;
@@ -90,7 +90,7 @@ namespace HackLite
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(533, 336);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.comboBox1);

@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>HackLite</RootNamespace>
     <AssemblyName>HackLite</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,11 +36,11 @@
   <ItemGroup>
     <Reference Include="PacketDotNet, Version=0.13.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\SharpPcap-4.2.0\Debug\PacketDotNet.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\SharpPcap-4.2.0\Debug\PacketDotNet.dll</HintPath>
     </Reference>
     <Reference Include="SharpPcap, Version=4.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\SharpPcap-4.2.0\Debug\SharpPcap.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\SharpPcap-4.2.0\Debug\SharpPcap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
