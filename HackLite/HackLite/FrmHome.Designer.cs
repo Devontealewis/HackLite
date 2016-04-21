@@ -231,7 +231,7 @@ namespace HackLite
             this.BtnPoison.Name = "BtnPoison";
             this.BtnPoison.Size = new System.Drawing.Size(111, 32);
             this.BtnPoison.TabIndex = 3;
-            this.BtnPoison.Text = "Start Poison";
+            this.BtnPoison.Text = "Start Dos";
             this.BtnPoison.UseVisualStyleBackColor = false;
             // 
             // FrmHome
