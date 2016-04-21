@@ -1,4 +1,6 @@
-﻿namespace HackLite
+﻿using System;
+
+namespace HackLite
 {
     partial class FrmHome
     {
@@ -41,13 +43,11 @@
             "Arp Cache Posining ",
             "DOS"});
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Arp Cache Poisoning ",
-            "DOS"});
-            this.comboBox1.Location = new System.Drawing.Point(79, 49);
+            this.comboBox1.Location = new System.Drawing.Point(25, 49);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(140, 21);
+            this.comboBox1.Size = new System.Drawing.Size(229, 21);
             this.comboBox1.TabIndex = 0;
+            this.comboBox1.Text = "Select a NIC";
             // 
             // pictureBox1
             // 
@@ -65,19 +65,20 @@
             this.btnStart.BackColor = System.Drawing.Color.Maroon;
             this.btnStart.Font = new System.Drawing.Font("Times New Roman", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStart.ForeColor = System.Drawing.Color.Lavender;
-            this.btnStart.Location = new System.Drawing.Point(66, 121);
+            this.btnStart.Location = new System.Drawing.Point(47, 121);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 23);
             this.btnStart.TabIndex = 2;
             this.btnStart.Text = "Red Pill";
             this.btnStart.UseVisualStyleBackColor = false;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
             // btnStop
             // 
             this.btnStop.BackColor = System.Drawing.Color.Blue;
             this.btnStop.Font = new System.Drawing.Font("Times New Roman", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStop.ForeColor = System.Drawing.Color.Lavender;
-            this.btnStop.Location = new System.Drawing.Point(166, 121);
+            this.btnStop.Location = new System.Drawing.Point(155, 121);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 23);
             this.btnStop.TabIndex = 3;
@@ -96,9 +97,15 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "FrmHome";
             this.Text = "HackLite";
+            this.Load += new System.EventHandler(this.FrmHome_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
+        }
+
+        private void FrmHome_Load(object sender, EventArgs e)
+        {
+           
         }
 
         #endregion
