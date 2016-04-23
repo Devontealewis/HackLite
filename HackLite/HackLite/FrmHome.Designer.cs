@@ -36,22 +36,22 @@ namespace HackLite
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.BtnPoison = new System.Windows.Forms.Button();
+            this.BtnScan = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.BtnScan = new System.Windows.Forms.Button();
-            this.BtnPoison = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -124,6 +124,30 @@ namespace HackLite
             this.tabControl1.Size = new System.Drawing.Size(533, 365);
             this.tabControl1.TabIndex = 5;
             // 
+            // tabPage1
+            // 
+            this.tabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.tabPage1.Controls.Add(this.btnStop);
+            this.tabPage1.Controls.Add(this.comboBox1);
+            this.tabPage1.Controls.Add(this.btnStart);
+            this.tabPage1.Controls.Add(this.pictureBox1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 28);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Size = new System.Drawing.Size(525, 333);
+            this.tabPage1.TabIndex = 3;
+            this.tabPage1.Text = "Select Nic";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::HackLite.Properties.Resources.trolltrix;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(529, 343);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
             // tabPage2
             // 
             this.tabPage2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -139,28 +163,33 @@ namespace HackLite
             this.tabPage2.Text = "DOS";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // tabPage3
+            // BtnPoison
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 28);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(525, 333);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "tabPage3";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.BtnPoison.BackColor = System.Drawing.Color.Transparent;
+            this.BtnPoison.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnPoison.ForeColor = System.Drawing.Color.Yellow;
+            this.BtnPoison.Image = global::HackLite.Properties.Resources.trolltrix;
+            this.BtnPoison.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.BtnPoison.Location = new System.Drawing.Point(408, 6);
+            this.BtnPoison.Name = "BtnPoison";
+            this.BtnPoison.Size = new System.Drawing.Size(111, 32);
+            this.BtnPoison.TabIndex = 3;
+            this.BtnPoison.Text = "Start Dos";
+            this.BtnPoison.UseVisualStyleBackColor = false;
             // 
-            // tabPage1
+            // BtnScan
             // 
-            this.tabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.tabPage1.Controls.Add(this.btnStop);
-            this.tabPage1.Controls.Add(this.comboBox1);
-            this.tabPage1.Controls.Add(this.btnStart);
-            this.tabPage1.Controls.Add(this.pictureBox1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 28);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(525, 333);
-            this.tabPage1.TabIndex = 3;
-            this.tabPage1.Text = "Select Nic";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.BtnScan.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnScan.ForeColor = System.Drawing.Color.Yellow;
+            this.BtnScan.Image = global::HackLite.Properties.Resources.trolltrix;
+            this.BtnScan.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnScan.Location = new System.Drawing.Point(3, 6);
+            this.BtnScan.Name = "BtnScan";
+            this.BtnScan.Size = new System.Drawing.Size(111, 32);
+            this.BtnScan.TabIndex = 2;
+            this.BtnScan.Text = "Scan Network";
+            this.BtnScan.UseVisualStyleBackColor = true;
+            this.BtnScan.Click += new System.EventHandler(this.BtnScan_Click);
             // 
             // dataGridView1
             // 
@@ -186,16 +215,6 @@ namespace HackLite
             this.Column2.HeaderText = "MAC Address";
             this.Column2.Name = "Column2";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::HackLite.Properties.Resources.trolltrix;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(529, 343);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
-            // 
             // pictureBox2
             // 
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -207,32 +226,14 @@ namespace HackLite
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
             // 
-            // BtnScan
+            // tabPage3
             // 
-            this.BtnScan.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnScan.ForeColor = System.Drawing.Color.Yellow;
-            this.BtnScan.Image = global::HackLite.Properties.Resources.trolltrix;
-            this.BtnScan.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnScan.Location = new System.Drawing.Point(3, 6);
-            this.BtnScan.Name = "BtnScan";
-            this.BtnScan.Size = new System.Drawing.Size(111, 32);
-            this.BtnScan.TabIndex = 2;
-            this.BtnScan.Text = "Scan Network";
-            this.BtnScan.UseVisualStyleBackColor = true;
-            // 
-            // BtnPoison
-            // 
-            this.BtnPoison.BackColor = System.Drawing.Color.Transparent;
-            this.BtnPoison.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnPoison.ForeColor = System.Drawing.Color.Yellow;
-            this.BtnPoison.Image = global::HackLite.Properties.Resources.trolltrix;
-            this.BtnPoison.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.BtnPoison.Location = new System.Drawing.Point(408, 6);
-            this.BtnPoison.Name = "BtnPoison";
-            this.BtnPoison.Size = new System.Drawing.Size(111, 32);
-            this.BtnPoison.TabIndex = 3;
-            this.BtnPoison.Text = "Start Dos";
-            this.BtnPoison.UseVisualStyleBackColor = false;
+            this.tabPage3.Location = new System.Drawing.Point(4, 28);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(525, 333);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // FrmHome
             // 
@@ -247,10 +248,10 @@ namespace HackLite
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

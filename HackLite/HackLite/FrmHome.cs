@@ -19,6 +19,22 @@ namespace HackLite
         public static string stringPackets = ""; //Data that is captured
         static int numPackets = 0;
 
+        //public static string rawPacketData = "";
+        //ip, mac, time it will expire
+        //public static List<Tuple<string, string, DateTime>> ipList = new List<Tuple<string, string, DateTime>>();
+        //public static List<string> possibleAddresses = new List<string>();
+        private static IPTables ipLists;
+        private static Settings settings = new Settings();
+        private static bool DHCPisActive = false;
+        public static int UDP = 0;
+        public static int TCP = 0;
+        //the address of the local box
+        public static string localIp;
+        private static string lastPacket = "";
+        //the mac of the local box
+        public static PhysicalAddress localMAC;
+        private PcapAddress Address;
+
 
 
         //**********Default constructor
@@ -26,100 +42,20 @@ namespace HackLite
         {
             InitializeComponent();
 
-            //Get the list of devices
-            devices = CaptureDeviceList.Instance;
-
-            //Make sure that there is at least one device
-            if (devices.Count < 1)
             {
-                MessageBox.Show("No Capture Devices Found!!!");
-                Application.Exit();
+                InitializeComponent();
+                devices = CaptureDeviceList.Instance;
+                if (devices == null || devices.Count < 1)
+                {
+                    MessageBox.Show("Error, no Capture Devices Found");
+                    Application.Exit();
+                }
+                foreach (ICaptureDevice dev in devices)
+                {
+                    comboBox1.Items.Add(dev.Description);
+                }
             }
-
-            //Add the devices to the combo box
-            foreach (ICaptureDevice dev in devices)
-            {
-                comboBox1.Items.Add(dev.Description);
-            }
-
-            //Get the second device and display in combo box
-            device = devices[2];
-            comboBox1.Text = device.Description;
-
-            //Register our handler function to the 'packet arrival' event
-            device.OnPacketArrival += new SharpPcap.PacketArrivalEventHandler(device_OnPacketArrival);
-
-            //Open the device for capturing
-            int readTimeoutMilliseconds = 1000;
-            device.Open(DeviceMode.Promiscuous, readTimeoutMilliseconds);
         }
-        private static void device_OnPacketArrival(object sender, CaptureEventArgs packet)
-        {
-            //Increment the number of packets captured
-            numPackets++;
-
-            //Put the packet number in the capture window
-            stringPackets += "Packet Number: " + Convert.ToString(numPackets);
-            stringPackets += Environment.NewLine;
-
-            //Array to store our data
-            byte[] data = packet.Packet.Data;
-
-            //Keep track of the number of bytes displayed per line
-            int byteCounter = 0;
-
-
-            stringPackets += "Destination MAC Address: ";
-            //Parsing the packets
-            foreach (byte b in data)
-            {
-                //Add the byte to our string (in hexidecimal)
-                if (byteCounter <= 13) stringPackets += b.ToString("X2") + " ";
-                byteCounter++;
-
-                switch (byteCounter)
-                {
-                    case 6:
-                        stringPackets += Environment.NewLine;
-                        stringPackets += "Source MAC Address: ";
-                        break;
-                    case 12:
-                        stringPackets += Environment.NewLine;
-                        stringPackets += "EtherType: ";
-                        break;
-                    case 14:
-                        if (data[12] == 8)
-                        {
-                            if (data[13] == 0) stringPackets += "(IP)";
-                            if (data[13] == 6) stringPackets += "(ARP)";
-                        }
-                        break;
-                }
-
-            }
-
-
-            stringPackets += Environment.NewLine + Environment.NewLine;
-            byteCounter = 0;
-            stringPackets += "Raw Data" + Environment.NewLine;
-            //Process each byte in our captured packet
-            foreach (byte b in data)
-            {
-                //Add the byte to our string (in hexidecimal)
-                stringPackets += b.ToString("X2") + " ";
-                byteCounter++;
-
-                if (byteCounter == 16)
-                {
-                    byteCounter = 0;
-                    stringPackets += Environment.NewLine;
-                }
-
-            }
-            stringPackets += Environment.NewLine;
-            stringPackets += Environment.NewLine;
-        } //End device_OnPacketArrival
-
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -136,6 +72,28 @@ namespace HackLite
 
             }
 
+        }
+
+        private void BtnScan_Click(object sender, EventArgs e)
+        {
+            {
+                //possibleAddresses = IPTables.gennerateIPRange(localIp, localMAC.ToString());
+                ipLists = new IPTables(localIp, settings.subnet);
+                var list = ipLists.GetAvalible();
+                List<Task<string>> arpTasks = new List<Task<string>>();
+                foreach (var address in list)
+                {
+                    arpTasks.Add(ARPAsync(address));
+                }
+            }
+            catch (NullReferenceException nul)
+            {
+                MessageBox.Show("NIC must be selected and started");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
