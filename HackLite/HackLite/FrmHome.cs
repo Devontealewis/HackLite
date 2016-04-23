@@ -267,17 +267,6 @@ namespace HackLite
             device.OnPacketArrival += new SharpPcap.PacketArrivalEventHandler(device_OnPacketArrival);
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            killExpiredIpLeases();
-            updateTable();
-        }
-        //nuke all the ip leases that have expired
-        private void killExpiredIpLeases()
-        {
-            if (ipLists != null)
-                ipLists.updateLists(DateTime.Now);
-        }
 
         private void SelectedIndexChange(object sender, EventArgs e)
         {
@@ -291,23 +280,12 @@ namespace HackLite
                 ipLists.Reset();
         }
 
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
- 
-        }
+     
 
-        private void openToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
- 
-        }
 
         private static string selectedIp;
 
-        private void clearToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (ipLists != null)
-                ipLists.Reset();
-        }
+
 
         public void sendPacket(string bytesToSend)
         {
