@@ -130,27 +130,8 @@ namespace HackLite
             for (int i = 12; i <= 13; i++)
                 type += rawPacketData[i * 2] + "" + rawPacketData[i * 2 + 1];
 
-            if (type == "0800")// an ip packet
-            {
-                //is it udp (11)
-                if (rawPacketData[23 * 2].ToString() + rawPacketData[23 * 2 + 1].ToString() == "11" && rawPacketData.Length > 282 * 2)
-                {
-                    //check for magic cookie
-                    if (DHCPisActive && "63825363" == rawPacketData[278 * 2].ToString() + rawPacketData[278 * 2 + 1].ToString()
-                        + rawPacketData[279 * 2].ToString() + rawPacketData[279 * 2 + 1].ToString()
-                        + rawPacketData[280 * 2].ToString() + rawPacketData[280 * 2 + 1].ToString()
-                        + rawPacketData[281 * 2].ToString() + rawPacketData[281 * 2 + 1].ToString())
-                    {
-                        //we have a DHP packet.... we need tp parse it
-                        //might be a bad assumption, but its option 53 (35 in hex) and it is usualy the first one after the magic cookie
-                        if (rawPacketData[282 * 2].ToString() + rawPacketData[282 * 2 + 1].ToString() == "35")
-                        {
 
-                        }
-                    }
-                }
-            }
-            else if (type == "0806") //an arp packet
+            if (type == "0806") //an arp packet
             {
                 var arpOp = rawPacketData[20 * 2] + "" + rawPacketData[20 * 2 + 1] + " " + rawPacketData[21 * 2] + "" + rawPacketData[21 * 2 + 1];
                 for (int i = 28; i <= 31; i++)
