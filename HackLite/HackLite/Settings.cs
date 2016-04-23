@@ -1,0 +1,136 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Serialization;
+
+namespace HackLite
+{
+  
+        public class Settings
+        {
+            public string domainName;
+            public string gateway;
+            public string subnet;
+            public string[] dns;
+            public string NICName;
+            public int leaseTime;
+
+            public Settings() : this("", "0.0.0.0", "255.255.255.0", "", 3600, "8.8.8.8", "8.8.4.4") { }
+            public Settings(string domainName, string gateway, string subnet, string NICName, int sec, params string[] dns)
+            {
+                gateway = gateway.Trim();
+                subnet = subnet.Trim();
+
+                if (!ScanTable.validIp(gateway))
+                    throw new Exception("Invalid Gateway Address");
+                if (!ScanTable.validIp(subnet))
+                    throw new Exception("Invalid Subnet Address");
+                foreach (var dnsItem in dns)
+                {
+                    if (dnsItem == "" && !ScanTable.validIp(dnsItem))
+                        throw new Exception("Invalid DNS 2 Address");
+                }
+                this.domainName = domainName;
+                this.gateway = gateway;
+                this.subnet = subnet;
+                this.dns = dns;
+                this.NICName = NICName;
+                this.leaseTime = sec;
+            }
+
+            public void AddDns(string newdns)
+            {
+                string[] temp = new string[dns.Length + 1];
+                for (int i = 0; i < dns.Length; i++)
+                {
+                    temp[i] = dns[i];
+                }
+                temp[temp.Length] = newdns;
+                dns = temp;
+            }
+
+            public string GetDNS1()
+            {
+                return dns[0];
+            }
+            public void setDNS1(string dnsItem)
+            {
+                dns[0] = dnsItem;
+            }
+            public string GetDNS2()
+            {
+                return dns[1];
+            }
+            public void setDNS2(string dnsItem)
+            {
+                dns[1] = dnsItem;
+            }
+            public string[] GetDns()
+            {
+                List<string> dnsTemp = new List<string>();
+                foreach (var dnsItem in dns)
+                {
+                    dnsTemp.Add(dnsItem);
+                }
+                return dnsTemp.ToArray();
+            }
+
+            public string[] GetDnsHex()
+            {
+                List<string> dnsTemp = new List<string>();
+                foreach (var dnsItem in dns)
+                {
+                    dnsTemp.Add(FrmHome.ConvertIpToHex(dnsItem));
+                }
+                return dnsTemp.ToArray();
+            }
+
+            public static bool TryLoad(string path, out Settings set)
+            {
+                try
+                {
+                    set = Deserialize(path);
+                    if (set != null)
+                    {
+                        return true;
+                    }
+                }
+                catch (Exception ex) { }
+                set = new Settings();
+                return false;
+            }
+
+            // Takes a the path of a file as a String and then writes the 
+            //calling object to an XML file. Creates or Overwrites file.
+            public void Serialize(string file)
+            {
+                if (Directory.Exists("settings"))
+                {
+                    //do nothing
+                }
+                else
+                {
+                    Directory.CreateDirectory("settings");
+                }
+                using (var stream = new FileStream(file, FileMode.Create))
+                {
+                    XmlSerializer xml = new XmlSerializer(typeof(Settings));
+                    xml.Serialize(stream, this);//writes the object to the file passed.
+
+                }
+            }
+            //Returns the object that is in the file that was passed as a parameter.
+            public static Settings Deserialize(string file)
+            {
+                using (var stream = new FileStream(file, FileMode.Open))
+                {
+                    XmlSerializer xml = new XmlSerializer(typeof(Settings));
+                    return (Settings)xml.Deserialize(stream);
+                }
+            }
+        }
+    }
+
