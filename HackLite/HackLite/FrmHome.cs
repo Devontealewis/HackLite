@@ -364,14 +364,6 @@ namespace HackLite
             updateTable();
         }
 
-
-
-        private void FRMCapture_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            if (device != null && device.Started)
-                device.Close();
-        }
-
         private void tabView_Selecting(object sender, TabControlCancelEventArgs e)
         {
             if (device == null || !device.Started)
