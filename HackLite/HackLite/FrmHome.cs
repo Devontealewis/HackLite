@@ -111,17 +111,7 @@ namespace HackLite
             if (rawPacketData == lastPacket)
                 return;
             lastPacket = rawPacketData;
-            //MAC
-            //first 8 are destination
-            //second 8 are source
-            //udp = 11 on 24th byte
-            //tcp = 06 on 24th byte
-            //IP
-            //sorce=27-30
-            //destination = 31-34
-
-            //0806 arp
-            //
+     
             string type = "";
             string sourceIp = "";
             string destinationIp = "";
@@ -160,14 +150,7 @@ namespace HackLite
                     Console.WriteLine(sourceIp + " Replied");
                 }
             }
-            //Console.WriteLine();
-            /*
-                capturedData += Environment.NewLine
-                    + "Source IP: "+sourceIp + Environment.NewLine
-                    + "Destination MAC: " + destinationMac + Environment.NewLine
-                    + "Source MAC: " + sourceMac + Environment.NewLine
-                    + "EtherType: " + type + Environment.NewLine;
-            */
+     
             rawPacketData = "";
         }
         private void updateTable()
