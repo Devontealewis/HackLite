@@ -29,7 +29,6 @@ namespace HackLite
         //public static List<string> possibleAddresses = new List<string>();
         private static ScanTable ipLists;
         private static Settings settings = new Settings();
-        private static bool DHCPisActive = false;
         public static int UDP = 0;
         public static int TCP = 0;
         //the address of the local box
@@ -199,15 +198,14 @@ namespace HackLite
                         regDevice();
                         int readTimeoutMilliseconds = 1000;
                         device.Open(DeviceMode.Promiscuous, readTimeoutMilliseconds);
-                        //pull address info for the nic... probably not the best way to do this, but it works so far....
+                        //pull address info from the nic
                         Address = ((WinPcapDevice)device).Addresses.FirstOrDefault(x => x.Addr.ipAddress != null && (x.Addr.ipAddress + "").Length <= 15);
                         localMAC = ((WinPcapDevice)device).Addresses.FirstOrDefault(x => x.Addr.hardwareAddress != null).Addr.hardwareAddress;
                         localIp = Address.Addr.ipAddress.ToString();
-  
                         var name = device.Description;
                         device.StartCapture();
                         comboBox1.Enabled = false;
-                        dataGridView1.Visible = true;
+                        MessageBox.Show("NIC has been Selected");
                     }
                     catch (Exception ex)
                     {
@@ -383,6 +381,6 @@ namespace HackLite
             }
         }
 
-}
+
 
 }
