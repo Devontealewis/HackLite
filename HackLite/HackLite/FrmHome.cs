@@ -216,7 +216,7 @@ namespace HackLite
                 {
                     try
                     {
-                       
+
                         try
                         {
                             device.StopCapture();
@@ -259,7 +259,7 @@ namespace HackLite
                 ipLists.Reset();
         }
 
-     
+
 
 
         private static string selectedIp;
@@ -383,4 +383,5 @@ namespace HackLite
 
 
 
+    }
 }
