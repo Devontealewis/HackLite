@@ -39,6 +39,7 @@ namespace HackLite
         public static PhysicalAddress localMAC;
         private PcapAddress Address;
         String Saved_Address;
+        String targetAddress;
 
         public FrmHome()
         {
@@ -338,7 +339,7 @@ namespace HackLite
                     }
                     else
                     {
-                        dataGridView3.Rows.Add(sender.Reply.Address, "Request timed out");
+                        dataGridView3.Rows.Add(targetAddress, "Request timed out");
                     }
                 }
                     
@@ -361,6 +362,7 @@ namespace HackLite
                 {
                     arpTasks.Add(ARPAsync(address));
                 }
+                Saved_Address = dataGridView1.Rows[0].Cells[0].Value.ToString();
             }
             catch (NullReferenceException nul)
             {
@@ -371,7 +373,7 @@ namespace HackLite
                 MessageBox.Show(ex.Message);
             }
             updateTable();
-            Saved_Address = dataGridView1.Rows[0].Cells[0].Value.ToString();
+            
         }
 
         private void tabView_Selecting(object sender, TabControlCancelEventArgs e)
@@ -386,7 +388,7 @@ namespace HackLite
 
         private void BtnPoison_Click(object sender, EventArgs e)
         {
-         for (int i = 0; i < 1; i++)
+         for (int i = 0; i < 2; i++)
             {
       
                 Ping(Saved_Address);
@@ -395,11 +397,19 @@ namespace HackLite
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            int rowIndex = e.RowIndex;
-            DataGridViewRow row = dataGridView1.Rows[rowIndex];
-           
-            Saved_Address = dataGridView1.Rows[rowIndex].Cells[0].Value.ToString();
+            try {
+                int rowIndex = e.RowIndex;
+                DataGridViewRow row = dataGridView1.Rows[rowIndex];
+
+                Saved_Address = dataGridView1.Rows[rowIndex].Cells[0].Value.ToString();
+
+            }
+            catch
+            {
+                MessageBox.Show("Mac Addresses not selectable");
+            }
         }
+
 
         public static void kill_ping()
         {
@@ -433,11 +443,18 @@ namespace HackLite
 
         private void button1_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < 20; i++)
+            try
             {
-        
-                string targetAddress = txtEnterIP.Text;
-                Ping(targetAddress);
+                for (int i = 0; i < 2; i++)
+                {
+
+                    targetAddress = txtEnterIP.Text;
+                    Ping(targetAddress);
+                }
+            }
+            catch
+            {
+
             }
         }
 
