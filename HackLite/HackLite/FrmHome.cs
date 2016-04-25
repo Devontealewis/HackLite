@@ -251,27 +251,7 @@ namespace HackLite
 
 
 
-        public void sendPacket(string bytesToSend)
-        {
-            //must be Hex
-            bytesToSend = bytesToSend ?? "";
-            //convert to byte array
-            string[] bytes = bytesToSend.Split(new string[] { " ", "\n", "\r\n", "\t" }, StringSplitOptions.RemoveEmptyEntries);
 
-            byte[] packet = new byte[bytes.Length];
-            int i = 0;
-            foreach (string s in bytes)
-            {
-                packet[i] = Convert.ToByte(s, 16);
-                i++;
-            }
-            try
-            {
-                FrmHome.device.SendPacket(packet);
-            }
-            catch (Exception ex)
-            { MessageBox.Show(ex.Message); }
-        }
    
 
         Task<string> ARPAsync(string address)
@@ -364,9 +344,9 @@ namespace HackLite
                 }
                 Saved_Address = dataGridView1.Rows[0].Cells[0].Value.ToString();
             }
-            catch (NullReferenceException nul)
+            catch (NullReferenceException)
             {
-                MessageBox.Show("NIC must be selected and started");
+                MessageBox.Show("NIC must be selected first");
             }
             catch (Exception ex)
             {

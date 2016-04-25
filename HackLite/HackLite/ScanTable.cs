@@ -193,14 +193,6 @@ namespace HackLite
             _updated = true;
         }
 
-        public string WhoHas(string ip)
-        {
-            var owner = ipList.FirstOrDefault(x => x.Item1 == ip);
-            if (owner != null)
-            {
-                return owner.Item2;
-            }
-            return null;
-        }
+      
     }
 }
