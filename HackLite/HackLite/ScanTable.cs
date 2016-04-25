@@ -4,17 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-
+//ScanTable was helped put together with Thomas Jones
 namespace HackLite
 {
-    /*
-     * The point of this class is to hold the ip list together
-     * We need to keep up of two things
-     * 1: Who has the IP and when does it expire
-     * 2: What IPs are availible for use
-     * This should keep up if the values are updated and
-     * if the leases expire to move them back to avalible
-    */
+    
+  
+
     public class ScanTable
     {
         private string[] _AllIP;
