@@ -292,7 +292,7 @@ namespace HackLite
             startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
             startInfo.FileName = "ping";
             //cmdping.StartInfo.UseShellExecute = false;
-            startInfo.Arguments = (" " + Saved_Address + " -t -l " + counter);
+            startInfo.Arguments = (" " + address + " -t -l " + counter);
             cmdping.StartInfo = startInfo;
             cmdping.Start();
             int timeout = 10000;
