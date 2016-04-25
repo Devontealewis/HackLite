@@ -51,6 +51,7 @@ namespace HackLite
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.btnKillPing = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -165,6 +166,7 @@ namespace HackLite
             // tabPage2
             // 
             this.tabPage2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.tabPage2.Controls.Add(this.btnKillPing);
             this.tabPage2.Controls.Add(this.dataGridView2);
             this.tabPage2.Controls.Add(this.BtnPoison);
             this.tabPage2.Controls.Add(this.BtnScan);
@@ -240,6 +242,7 @@ namespace HackLite
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(529, 150);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // IP
             // 
@@ -283,6 +286,20 @@ namespace HackLite
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 0;
             this.pictureBox3.TabStop = false;
+            // 
+            // btnKillPing
+            // 
+            this.btnKillPing.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnKillPing.ForeColor = System.Drawing.Color.Yellow;
+            this.btnKillPing.Image = global::HackLite.Properties.Resources.trolltrix;
+            this.btnKillPing.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.btnKillPing.Location = new System.Drawing.Point(203, 6);
+            this.btnKillPing.Name = "btnKillPing";
+            this.btnKillPing.Size = new System.Drawing.Size(111, 32);
+            this.btnKillPing.TabIndex = 5;
+            this.btnKillPing.Text = "Kill Processes";
+            this.btnKillPing.UseVisualStyleBackColor = true;
+            this.btnKillPing.Click += new System.EventHandler(this.btnKillPing_Click);
             // 
             // FrmHome
             // 
@@ -338,6 +355,7 @@ namespace HackLite
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.Button btnKillPing;
     }
 }
 

