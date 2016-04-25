@@ -36,10 +36,13 @@ namespace HackLite
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.guideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutUsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnKillPing = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,8 +53,13 @@ namespace HackLite
             this.Mac = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.txtEnterIP = new System.Windows.Forms.TextBox();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.btnKillPing = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -61,6 +69,7 @@ namespace HackLite
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
@@ -122,9 +131,26 @@ namespace HackLite
             // 
             // helpToolStripMenuItem
             // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.guideToolStripMenuItem,
+            this.aboutUsToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // guideToolStripMenuItem
+            // 
+            this.guideToolStripMenuItem.Name = "guideToolStripMenuItem";
+            this.guideToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.guideToolStripMenuItem.Text = "Guide";
+            this.guideToolStripMenuItem.Click += new System.EventHandler(this.guideToolStripMenuItem_Click);
+            // 
+            // aboutUsToolStripMenuItem
+            // 
+            this.aboutUsToolStripMenuItem.Name = "aboutUsToolStripMenuItem";
+            this.aboutUsToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.aboutUsToolStripMenuItem.Text = "About Us";
+            this.aboutUsToolStripMenuItem.Click += new System.EventHandler(this.aboutUsToolStripMenuItem_Click);
             // 
             // tabControl1
             // 
@@ -177,11 +203,26 @@ namespace HackLite
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(525, 333);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Ping of Death";
+            this.tabPage2.Text = "Scan on Network";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // btnKillPing
+            // 
+            this.btnKillPing.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnKillPing.ForeColor = System.Drawing.Color.Yellow;
+            this.btnKillPing.Image = global::HackLite.Properties.Resources.trolltrix;
+            this.btnKillPing.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.btnKillPing.Location = new System.Drawing.Point(203, 6);
+            this.btnKillPing.Name = "btnKillPing";
+            this.btnKillPing.Size = new System.Drawing.Size(111, 32);
+            this.btnKillPing.TabIndex = 5;
+            this.btnKillPing.Text = "Kill Processes";
+            this.btnKillPing.UseVisualStyleBackColor = true;
+            this.btnKillPing.Click += new System.EventHandler(this.btnKillPing_Click);
             // 
             // dataGridView2
             // 
+            this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -269,13 +310,78 @@ namespace HackLite
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.button2);
+            this.tabPage3.Controls.Add(this.button1);
+            this.tabPage3.Controls.Add(this.txtEnterIP);
+            this.tabPage3.Controls.Add(this.dataGridView3);
             this.tabPage3.Controls.Add(this.pictureBox3);
             this.tabPage3.Location = new System.Drawing.Point(4, 28);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(525, 333);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Arp Cache Poisoning";
+            this.tabPage3.Text = "Attack Specific";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.Yellow;
+            this.button2.Image = global::HackLite.Properties.Resources.trolltrix;
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.button2.Location = new System.Drawing.Point(406, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(111, 32);
+            this.button2.TabIndex = 6;
+            this.button2.Text = "Kill Processes";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.Yellow;
+            this.button1.Image = global::HackLite.Properties.Resources.trolltrix;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.Location = new System.Drawing.Point(8, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(111, 32);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Start DOS";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // txtEnterIP
+            // 
+            this.txtEnterIP.Location = new System.Drawing.Point(147, 55);
+            this.txtEnterIP.Name = "txtEnterIP";
+            this.txtEnterIP.Size = new System.Drawing.Size(227, 26);
+            this.txtEnterIP.TabIndex = 2;
+            this.txtEnterIP.Text = "Enter IP Address";
+            this.txtEnterIP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column3,
+            this.Column4});
+            this.dataGridView3.Location = new System.Drawing.Point(0, 175);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.Size = new System.Drawing.Size(525, 150);
+            this.dataGridView3.TabIndex = 1;
+            // 
+            // Column3
+            // 
+            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column3.HeaderText = "Pinging";
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column4.HeaderText = "Bytes";
+            this.Column4.Name = "Column4";
             // 
             // pictureBox3
             // 
@@ -286,20 +392,6 @@ namespace HackLite
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 0;
             this.pictureBox3.TabStop = false;
-            // 
-            // btnKillPing
-            // 
-            this.btnKillPing.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKillPing.ForeColor = System.Drawing.Color.Yellow;
-            this.btnKillPing.Image = global::HackLite.Properties.Resources.trolltrix;
-            this.btnKillPing.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.btnKillPing.Location = new System.Drawing.Point(203, 6);
-            this.btnKillPing.Name = "btnKillPing";
-            this.btnKillPing.Size = new System.Drawing.Size(111, 32);
-            this.btnKillPing.TabIndex = 5;
-            this.btnKillPing.Text = "Kill Processes";
-            this.btnKillPing.UseVisualStyleBackColor = true;
-            this.btnKillPing.Click += new System.EventHandler(this.btnKillPing_Click);
             // 
             // FrmHome
             // 
@@ -321,6 +413,8 @@ namespace HackLite
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -356,6 +450,14 @@ namespace HackLite
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.Button btnKillPing;
+        private System.Windows.Forms.ToolStripMenuItem guideToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutUsToolStripMenuItem;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtEnterIP;
+        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
     }
 }
 

