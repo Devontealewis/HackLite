@@ -245,7 +245,6 @@ namespace HackLite
 
 
 
-        private static string selectedIp;
 
 
 
@@ -270,19 +269,7 @@ namespace HackLite
             catch (Exception ex)
             { MessageBox.Show(ex.Message); }
         }
-        Task<PingReply> PingAsync(string address)
-        {
-            var tcs = new TaskCompletionSource<PingReply>();
-            Ping ping = new Ping();
-            ping.PingCompleted += (obj, sender) =>
-            {
-                if (sender.Reply.Status == IPStatus.Success)
-                    dataGridView1.Rows.Add(sender.Reply.Address);
-                tcs.SetResult(sender.Reply);
-            };
-            ping.SendAsync(address, new object());
-            return tcs.Task;
-        }
+   
 
         Task<string> ARPAsync(string address)
         {
@@ -304,24 +291,27 @@ namespace HackLite
             device.SendPacket(ethernetPacket);
         }
 
-        private void pingStripMenuItem_Click(object sender, EventArgs e)
+        Task<PingReply> PingAsync(string address)
         {
-            try
+            var tcs = new TaskCompletionSource<PingReply>();
+            Ping ping = new Ping();
+            string data = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            byte[] buffer = Encoding.ASCII.GetBytes(data);
+            int timeout = 10000;
+            PingReply reply = ping.Send(address, timeout, buffer);
+            ping.PingCompleted += (obj, sender) =>
             {
-                //possibleAddresses = IPTables.gennerateIPRange(localIp, localMAC.ToString());
-                ipLists = new ScanTable(localIp, settings.subnet);
-                var list = ipLists.GetAvalible();
-                List<Task<PingReply>> pingTasks = new List<Task<PingReply>>();
-                foreach (var address in list)
-                {
-                    pingTasks.Add(PingAsync(address));
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+                if (sender.Reply.Status == IPStatus.Success)
+                    dataGridView2.Rows.Add(sender.Reply.Address, reply.Buffer.Length);
+                    
+                    
+                tcs.SetResult(sender.Reply);
+            };
+            ping.SendAsync(address, new object());
+            return tcs.Task;
         }
+
+     
 
         private void BtnScan_Click_1(object sender, EventArgs e)
         {
@@ -356,7 +346,40 @@ namespace HackLite
             }
         }
 
+        public static void LocalPingTimeout()
+        {
+            // Ping's the local machine.
+            Ping pingSender = new Ping();
+            IPAddress address = IPAddress.Loopback;
 
+            // Create a buffer of 32 bytes of data to be transmitted.
+            string data = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            byte[] buffer = Encoding.ASCII.GetBytes(data);
+
+            // Wait 10 seconds for a reply.
+            int timeout = 10000;
+            PingReply reply = pingSender.Send(address, timeout, buffer);
+
+            if (reply.Status == IPStatus.Success)
+            {
+                Console.WriteLine("Address: {0}", reply.Address.ToString());
+                Console.WriteLine("RoundTrip time: {0}", reply.RoundtripTime);
+                Console.WriteLine("Time to live: {0}", reply.Options.Ttl);
+                Console.WriteLine("Don't fragment: {0}", reply.Options.DontFragment);
+                Console.WriteLine("Buffer size: {0}", reply.Buffer.Length);
+            }
+            else
+            {
+                Console.WriteLine(reply.Status);
+            }
+        }
+
+
+        private void BtnPoison_Click(object sender, EventArgs e)
+        {
+            string Address = "192,168.0.1"; 
+            PingAsync(Address);
+        }
 
     }
 }

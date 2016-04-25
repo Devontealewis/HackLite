@@ -40,19 +40,23 @@ namespace HackLite
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BtnPoison = new System.Windows.Forms.Button();
             this.BtnScan = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.IP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Mac = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.IP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Mac = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabPage3.SuspendLayout();
@@ -95,7 +99,6 @@ namespace HackLite
             this.btnStop.TabIndex = 3;
             this.btnStop.Text = "Blue Pill";
             this.btnStop.UseVisualStyleBackColor = false;
-       
             // 
             // menuStrip1
             // 
@@ -162,6 +165,7 @@ namespace HackLite
             // tabPage2
             // 
             this.tabPage2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.tabPage2.Controls.Add(this.dataGridView2);
             this.tabPage2.Controls.Add(this.BtnPoison);
             this.tabPage2.Controls.Add(this.BtnScan);
             this.tabPage2.Controls.Add(this.dataGridView1);
@@ -171,8 +175,30 @@ namespace HackLite
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(525, 333);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "DOS";
+            this.tabPage2.Text = "Ping of Death";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2});
+            this.dataGridView2.Location = new System.Drawing.Point(3, 198);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(522, 127);
+            this.dataGridView2.TabIndex = 4;
+            // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column1.HeaderText = "Pinging";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Bytes";
+            this.Column2.Name = "Column2";
             // 
             // BtnPoison
             // 
@@ -187,6 +213,7 @@ namespace HackLite
             this.BtnPoison.TabIndex = 3;
             this.BtnPoison.Text = "Start Dos";
             this.BtnPoison.UseVisualStyleBackColor = false;
+            this.BtnPoison.Click += new System.EventHandler(this.BtnPoison_Click);
             // 
             // BtnScan
             // 
@@ -214,6 +241,18 @@ namespace HackLite
             this.dataGridView1.Size = new System.Drawing.Size(529, 150);
             this.dataGridView1.TabIndex = 0;
             // 
+            // IP
+            // 
+            this.IP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.IP.HeaderText = "IP Address";
+            this.IP.Name = "IP";
+            // 
+            // Mac
+            // 
+            this.Mac.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Mac.HeaderText = "MAC Address";
+            this.Mac.Name = "Mac";
+            // 
             // pictureBox2
             // 
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -232,7 +271,7 @@ namespace HackLite
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(525, 333);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.Text = "Arp Cache Poisoning";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // pictureBox3
@@ -244,18 +283,6 @@ namespace HackLite
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 0;
             this.pictureBox3.TabStop = false;
-            // 
-            // IP
-            // 
-            this.IP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.IP.HeaderText = "IP Address";
-            this.IP.Name = "IP";
-            // 
-            // Mac
-            // 
-            this.Mac.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Mac.HeaderText = "MAC Address";
-            this.Mac.Name = "Mac";
             // 
             // FrmHome
             // 
@@ -273,6 +300,7 @@ namespace HackLite
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tabPage3.ResumeLayout(false);
@@ -307,6 +335,9 @@ namespace HackLite
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.DataGridViewTextBoxColumn IP;
         private System.Windows.Forms.DataGridViewTextBoxColumn Mac;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
     }
 }
 
