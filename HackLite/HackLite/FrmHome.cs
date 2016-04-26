@@ -442,5 +442,10 @@ namespace HackLite
         {
             kill_ping();
         }
+
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

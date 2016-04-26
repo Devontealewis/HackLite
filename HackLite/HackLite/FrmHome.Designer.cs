@@ -44,9 +44,13 @@ namespace HackLite
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btnKillPing = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BtnPoison = new System.Windows.Forms.Button();
             this.BtnScan = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.IP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Mac = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.button2 = new System.Windows.Forms.Button();
@@ -56,10 +60,6 @@ namespace HackLite
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Mac = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -109,6 +109,7 @@ namespace HackLite
             this.btnStop.TabIndex = 3;
             this.btnStop.Text = "Blue Pill";
             this.btnStop.UseVisualStyleBackColor = false;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
             // menuStrip1
             // 
@@ -232,6 +233,19 @@ namespace HackLite
             this.dataGridView2.Size = new System.Drawing.Size(522, 127);
             this.dataGridView2.TabIndex = 4;
             // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column1.HeaderText = "Pinging";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column2.HeaderText = "Bytes";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
             // BtnPoison
             // 
             this.BtnPoison.BackColor = System.Drawing.Color.Transparent;
@@ -273,6 +287,20 @@ namespace HackLite
             this.dataGridView1.Size = new System.Drawing.Size(529, 150);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // IP
+            // 
+            this.IP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.IP.HeaderText = "IP Address";
+            this.IP.Name = "IP";
+            this.IP.ReadOnly = true;
+            // 
+            // Mac
+            // 
+            this.Mac.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Mac.HeaderText = "MAC Address";
+            this.Mac.Name = "Mac";
+            this.Mac.ReadOnly = true;
             // 
             // pictureBox2
             // 
@@ -369,33 +397,6 @@ namespace HackLite
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 0;
             this.pictureBox3.TabStop = false;
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column1.HeaderText = "Pinging";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column2.HeaderText = "Bytes";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // IP
-            // 
-            this.IP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.IP.HeaderText = "IP Address";
-            this.IP.Name = "IP";
-            this.IP.ReadOnly = true;
-            // 
-            // Mac
-            // 
-            this.Mac.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Mac.HeaderText = "MAC Address";
-            this.Mac.Name = "Mac";
-            this.Mac.ReadOnly = true;
             // 
             // FrmHome
             // 
