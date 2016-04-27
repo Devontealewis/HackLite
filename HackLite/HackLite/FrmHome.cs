@@ -413,7 +413,7 @@ namespace HackLite
 
         private void guideToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("First Select a NIC and press the Red pill, the blue pill will exit, then Select Ping of Death scan the network for an ip address to select then click begin DOS, when Exiting Dont forget to Kill processes");
+            MessageBox.Show("First Select a NIC and press the Red pill, the blue pill will exit, then press the Scan The Network to look for an ip address to select then click begin DOS, or select attack specific if the ip address of the target machine is already known when Exiting Dont forget to Kill processes");
         }
 
         private void aboutUsToolStripMenuItem_Click(object sender, EventArgs e)
