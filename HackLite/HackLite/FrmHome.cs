@@ -445,7 +445,12 @@ namespace HackLite
 
         private void btnStop_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
 
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            comboBox1.Enabled = true;
         }
     }
 }
